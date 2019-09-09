@@ -1,3 +1,5 @@
+'use strict';
+
 let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
 
@@ -191,7 +193,7 @@ let rotateStep = function(grad){
 //увеличение летоисчисления
 
 let yearCount = function(){
-	document.getElementById('timer').innerText = `Year: ${++year}`
+	document.getElementById('timer').innerText = `Year: ${++year}`;
 };
 
 
@@ -208,7 +210,7 @@ let rotate = function(speed){
 		i++;
 
 		//триггер тысячных отсечек
-		if(i%360 === 0){yearCount();};
+		if(i%360 === 0){yearCount();}
 
 		setTimeout(f, speed);
 	}
