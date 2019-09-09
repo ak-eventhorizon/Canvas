@@ -4,13 +4,8 @@
 }
 
 body {
-    background: #1e1e1f;
-}
-
-/* звездное небо фоном */
-#main {
-	height: 100%;
-	background-color: #1e1e1f;
+	/* звездное небо фоном */
+	background: #1e1e1f;
 	
 	background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 5px),
     radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
