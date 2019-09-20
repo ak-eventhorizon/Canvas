@@ -115,8 +115,8 @@ let greenBall = new Ball(100, 300, 10, -5, 0, 'green');
 
 
 
-//обработчик события keydown через jQuery
-$('body').keydown(function(event){
+//обработчик события keydown
+document.addEventListener('keydown', function(event){
 
 	let direction = keyActions[event.keyCode];
 
