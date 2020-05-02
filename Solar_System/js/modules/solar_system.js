@@ -1,7 +1,9 @@
 'use strict';
 
-let canvas = document.getElementById('canvas');
+let canvas = document.getElementById('solar_system');
 let context = canvas.getContext('2d');
+context.canvas.width  = canvas.clientWidth;
+context.canvas.height = canvas.clientHeight;
 
 context.lineWidth = 0.3;
 
@@ -220,10 +222,9 @@ let rotate = function(speed){
 
 
 
-window.onload = function(){
-	rotateStep(0);
-	rotate(41); // такая частота дает примерно 24 fps
-};
-
-
+// window.onload = function(){
+// 	rotateStep(0);
+// 	rotate(41); // такая частота дает примерно 24 fps
+// };
+export {rotateStep, rotate};
 
