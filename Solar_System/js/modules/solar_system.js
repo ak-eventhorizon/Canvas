@@ -35,7 +35,7 @@ let drawPlanet = function(obj){
 
 
 //вращение на grad градусов
-let rotateStep = function(grad){
+let setAngle = function(grad){
 
 	//очистка canvas
 	context.clearRect(0, 0, canvas.width, canvas.height); 
@@ -204,11 +204,11 @@ let yearCount = function(){
 // speed - интервал отрисовки (чем меньше тем быстрее)
 // ПОТЕНЦИАЛЬНАЯ ПРОБЛЕМА - i увеличивается бесконечно
 
-let rotate = function(speed){
+let rotateWithSpeed = function(speed){
 	let i = 0;
 
 	function f(){
-		rotateStep(i);
+		setAngle(i);
 		i++;
 
 		//триггер тысячных отсечек
@@ -223,8 +223,8 @@ let rotate = function(speed){
 
 
 // window.onload = function(){
-// 	rotateStep(0);
-// 	rotate(41); // такая частота дает примерно 24 fps
+// 	setAngle(0);
+// 	rotateWithSpeed(41); // такая частота дает примерно 24 fps
 // };
-export {rotateStep, rotate};
+export {setAngle, rotateWithSpeed};
 
