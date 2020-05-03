@@ -4,27 +4,98 @@ let canvas = document.getElementById('solar_system');
 let context = canvas.getContext('2d');
 context.canvas.width  = canvas.clientWidth;
 context.canvas.height = canvas.clientHeight;
-
 context.lineWidth = 0.3;
+
+//единица измерения - одна тысячная стороны квадрата Canvas
+//изначально - использовался холст 1000x1000px
+let unit = canvas.clientWidth / 1000;
 
 //текущий год (один оборот Земли вокруг солнца)
 let year = 0;
 
 //соотношение орбит и радиусов планет в этой группе 1:1
+let sun = {
+	x: 500*unit,
+	y: 500*unit,
+	radius: 50*unit,
+	color: '#f5de5d',
+	img: document.getElementById('sun')
+};
 
-let sun = {x: 500, y: 500, radius: 50, color: '#f5de5d', img: document.getElementById('sun')};
-let mercury = {x: 557, y: 500, radius: 3, color: '#a6a4a2', orbit: 57, img: document.getElementById('mercury')};
-let venus = {x: 608, y: 500, radius: 9.5, color: '#e0c396', orbit: 108, img: document.getElementById('venus')};
-let earth = {x: 650, y: 500, radius: 10, color: '#abd4d0',orbit: 150, img: document.getElementById('earth')};
-let mars = {x: 728, y: 500, radius: 5, color: '#873e2e',orbit: 228, img: document.getElementById('mars')};
+let mercury = {
+	x: 557*unit,
+	y: 500*unit,
+	radius: 3*unit,
+	color: '#a6a4a2',
+	orbit: 57*unit,
+	img: document.getElementById('mercury')
+};
+
+let venus = {
+	x: 608*unit,
+	y: 500*unit,
+	radius: 9.5*unit,
+	color: '#e0c396',
+	orbit: 108*unit,
+	img: document.getElementById('venus')
+};
+
+let earth = {
+	x: 650*unit,
+	y: 500*unit,
+	radius: 10*unit,
+	color: '#abd4d0',
+	orbit: 150*unit,
+	img: document.getElementById('earth')
+};
+
+let mars = {
+	x: 728*unit,
+	y: 500*unit,
+	radius: 5*unit,
+	color: '#873e2e',
+	orbit: 228*unit,
+	img: document.getElementById('mars')
+};
 
 
-//орбиты и радиусы аутентичного соотношения не имеют
+//орбиты и радиусы этой группы аутентичного соотношения не имеют
 
-let jupiter = {x: 820, y: 500, radius: 30, color: '#ceb193',orbit: 320, img: document.getElementById('jupiter')};
-let saturn = {x: 890, y: 500, radius: 33, color: '#e0d8cc',orbit: 390, img: document.getElementById('saturn')};
-let uran = {x: 945, y: 500, radius: 13, color: '#3994e3',orbit: 445, img: document.getElementById('uran')};
-let neptun = {x: 980, y: 500, radius: 11, color: '#05459e',orbit: 480, img: document.getElementById('neptun')};
+let jupiter = {
+	x: 820*unit,
+	y: 500*unit,
+	radius: 30*unit,
+	color: '#ceb193',
+	orbit: 320*unit,
+	img: document.getElementById('jupiter')
+};
+
+let saturn = {
+	x: 890*unit,
+	y: 500*unit,
+	radius: 33*unit,
+	color: '#e0d8cc',
+	orbit: 390*unit,
+	img: document.getElementById('saturn')
+};
+
+let uran = {
+	x: 945*unit,
+	y: 500*unit,
+	radius: 13*unit,
+	color: '#3994e3',
+	orbit: 445*unit,
+	img: document.getElementById('uran')
+};
+
+let neptun = {
+	x: 980*unit,
+	y: 500*unit,
+	radius: 11*unit,
+	color: '#05459e',
+	orbit: 480*unit,
+	img: document.getElementById('neptun')
+};
 
 
 //описываем функцию по отрисовке планеты

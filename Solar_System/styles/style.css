@@ -19,18 +19,15 @@
 	font-family: sans-serif;
 }
 
+#stars_bg, #solar_system {
+	width: 100vmin;
+	height: 100vmin;
+}
+
 #stars_bg {
-	width: 1000px;
-	height: 1000px;
 	position: absolute;
 	top: 0;
 	left: 0;
 	background-color: #000000ee;
 	z-index: -1;
 }
-
-#solar_system {
-	width: 1000px;
-	height: 1000px;
-}
-
