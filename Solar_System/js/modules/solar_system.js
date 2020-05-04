@@ -104,7 +104,6 @@ let drawPlanet = function(obj){
 };
 
 
-
 //вращение на grad градусов
 let setAngle = function(grad){
 
@@ -113,42 +112,42 @@ let setAngle = function(grad){
 
 	//рисуем орбиты планет
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, mercury.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, venus.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, earth.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, mars.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, jupiter.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, saturn.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, uran.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 
 	context.beginPath();
-	context.strokeStyle = 'grey';
+	context.strokeStyle = 'white';
 	context.arc(sun.x, sun.y, neptun.orbit, 0, Math.PI * 2, false);
 	context.stroke();
 

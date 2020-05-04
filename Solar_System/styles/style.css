@@ -4,19 +4,35 @@
 	box-sizing: border-box;
 }
 
+body {
+	background-color: #292929;
+}
+
 #images {
 	display: none;
 }
 
+#app {
+	display: grid;
+	grid-template-areas: 'info main controls';
+	grid-template-columns: 1fr 100vmin 1fr;
+}
+
+#info {
+	grid-area: info;
+}
+
 #timer {
-	position: absolute;
-	top: 40px;
-	left: 40px;
-	width: 200px;
 	color: white;
 	font-size: 36px;
 	font-weight: bold;
 	font-family: sans-serif;
+}
+
+#main {
+	grid-area: main;
+
+	position: relative;
 }
 
 #stars_bg, #solar_system {
@@ -28,6 +44,22 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #000000ee;
+	background-color: #000000;
 	z-index: -1;
+}
+
+#controls {
+	grid-area: controls;
+}
+
+@media screen and (orientation:portrait) {
+	#app {
+		grid-template-areas: 
+		'main'
+		'controls'
+		'info';
+
+		grid-template-columns: 100vmin;
+		grid-template-rows: 100vmin 1fr 1fr;
+	}
 }
