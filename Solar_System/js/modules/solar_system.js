@@ -4,7 +4,6 @@ let canvas = document.getElementById('solar_system');
 let context = canvas.getContext('2d');
 context.canvas.width  = canvas.clientWidth;
 context.canvas.height = canvas.clientHeight;
-context.lineWidth = 0.3;
 
 //единица измерения - одна тысячная стороны квадрата Canvas
 //изначально - использовался холст 1000x1000px
@@ -14,11 +13,13 @@ let unit = canvas.clientWidth / 1000;
 let year = 0;
 
 //конструктор для создания <img> с атрибутом src
-function ImagePlanet(src){
+let ImagePlanet = function(src){
 	let img = new Image();
 	img.src = src;
 	return img;
-}
+};
+
+
 
 //соотношение орбит и радиусов планет в этой группе 1:1
 let sun = {
@@ -105,11 +106,24 @@ let neptun = {
 };
 
 
+
 //функция по отрисовке планеты
 let drawPlanet = function(obj){
 	context.drawImage(obj.img, obj.x - obj.radius, obj.y - obj.radius, obj.radius * 2, obj.radius * 2);
 };
 
+//функция по отрисовке орбиты
+let drawOrbit = function(obj, lineWidth = 0.3, color = 'white'){
+	context.save();
+	context.lineWidth = lineWidth;
+
+	context.beginPath();
+	context.strokeStyle = color;
+	context.arc(sun.x, sun.y, obj.orbit, 0, Math.PI * 2, false);
+	context.stroke();
+
+	context.restore();
+};
 
 //вращение на grad градусов
 let setAngle = function(grad){
@@ -118,45 +132,14 @@ let setAngle = function(grad){
 	context.clearRect(0, 0, canvas.width, canvas.height); 
 
 	//рисуем орбиты планет
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, mercury.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, venus.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, earth.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, mars.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, jupiter.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, saturn.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, uran.orbit, 0, Math.PI * 2, false);
-	context.stroke();
-
-	context.beginPath();
-	context.strokeStyle = 'white';
-	context.arc(sun.x, sun.y, neptun.orbit, 0, Math.PI * 2, false);
-	context.stroke();
+	drawOrbit(mercury);
+	drawOrbit(venus);
+	drawOrbit(earth);
+	drawOrbit(mars);
+	drawOrbit(jupiter);
+	drawOrbit(saturn);
+	drawOrbit(uran);
+	drawOrbit(neptun);
 
 	//********Солнце********
 	drawPlanet(sun);
