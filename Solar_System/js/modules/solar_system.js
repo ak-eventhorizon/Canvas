@@ -13,13 +13,20 @@ let unit = canvas.clientWidth / 1000;
 //текущий год (один оборот Земли вокруг солнца)
 let year = 0;
 
+//конструктор для создания <img> с атрибутом src
+function ImagePlanet(src){
+	let img = new Image();
+	img.src = src;
+	return img;
+}
+
 //соотношение орбит и радиусов планет в этой группе 1:1
 let sun = {
 	x: 500*unit,
 	y: 500*unit,
 	radius: 50*unit,
 	color: '#f5de5d',
-	img: document.getElementById('sun')
+	img: ImagePlanet('img/sun.png')
 };
 
 let mercury = {
@@ -28,7 +35,7 @@ let mercury = {
 	radius: 3*unit,
 	color: '#a6a4a2',
 	orbit: 57*unit,
-	img: document.getElementById('mercury')
+	img: ImagePlanet('img/mercury.png')
 };
 
 let venus = {
@@ -37,7 +44,7 @@ let venus = {
 	radius: 9.5*unit,
 	color: '#e0c396',
 	orbit: 108*unit,
-	img: document.getElementById('venus')
+	img: ImagePlanet('img/venus.png')
 };
 
 let earth = {
@@ -46,7 +53,7 @@ let earth = {
 	radius: 10*unit,
 	color: '#abd4d0',
 	orbit: 150*unit,
-	img: document.getElementById('earth')
+	img: ImagePlanet('img/earth.png')
 };
 
 let mars = {
@@ -55,7 +62,7 @@ let mars = {
 	radius: 5*unit,
 	color: '#873e2e',
 	orbit: 228*unit,
-	img: document.getElementById('mars')
+	img: ImagePlanet('img/mars.png')
 };
 
 
@@ -67,7 +74,7 @@ let jupiter = {
 	radius: 30*unit,
 	color: '#ceb193',
 	orbit: 320*unit,
-	img: document.getElementById('jupiter')
+	img: ImagePlanet('img/jupiter.png')
 };
 
 let saturn = {
@@ -76,7 +83,7 @@ let saturn = {
 	radius: 33*unit,
 	color: '#e0d8cc',
 	orbit: 390*unit,
-	img: document.getElementById('saturn')
+	img: ImagePlanet('img/saturn.png')
 };
 
 let uran = {
@@ -85,7 +92,7 @@ let uran = {
 	radius: 13*unit,
 	color: '#3994e3',
 	orbit: 445*unit,
-	img: document.getElementById('uran')
+	img: ImagePlanet('img/uran.png')
 };
 
 let neptun = {
@@ -94,11 +101,11 @@ let neptun = {
 	radius: 11*unit,
 	color: '#05459e',
 	orbit: 480*unit,
-	img: document.getElementById('neptun')
+	img: ImagePlanet('img/neptun.png')
 };
 
 
-//описываем функцию по отрисовке планеты
+//функция по отрисовке планеты
 let drawPlanet = function(obj){
 	context.drawImage(obj.img, obj.x - obj.radius, obj.y - obj.radius, obj.radius * 2, obj.radius * 2);
 };
