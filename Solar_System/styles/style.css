@@ -1,3 +1,12 @@
+/****************************** COLOR SCHEME - BEGIN ******************************/
+:root {
+	--pure-black: #000000;
+	--pure-white: #ffffff; 
+	--cosmic-glow: #0072b354;
+}
+/****************************** COLOR SCHEME - END ******************************/
+
+
 * {
     margin: 0;
 	padding: 0;
@@ -5,7 +14,7 @@
 }
 
 body {
-	background-color: #292929;
+	background-color: var(--pure-black);
 }
 
 #images {
@@ -20,10 +29,12 @@ body {
 
 #info {
 	grid-area: info;
+
+	background-image: linear-gradient(to left, var(--pure-black) 30%, var(--cosmic-glow) 100%);
 }
 
 #timer {
-	color: white;
+	color: var(--pure-white);
 	font-size: 36px;
 	font-weight: bold;
 	font-family: sans-serif;
@@ -44,12 +55,14 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #000000;
+	background-color: var(--pure-black);
 	z-index: -1;
 }
 
 #controls {
 	grid-area: controls;
+
+	background-image: linear-gradient(to right, var(--pure-black) 30%, var(--cosmic-glow) 100%);
 }
 
 @media screen and (orientation:portrait) {
