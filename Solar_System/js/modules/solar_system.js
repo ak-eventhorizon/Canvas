@@ -21,13 +21,15 @@ let ImagePlanet = function(src){
 
 
 
-//соотношение орбит и радиусов планет в этой группе 1:1
+//соотношение орбит и радиусов планет в этой группе аутентичное
 let sun = {
 	x: 500*unit,
 	y: 500*unit,
 	radius: 50*unit,
 	color: '#f5de5d',
-	img: ImagePlanet('img/sun.png')
+	orbit: 0,
+	img: ImagePlanet('img/sun.png'),
+	rotateRatio: 0
 };
 
 let mercury = {
@@ -36,7 +38,8 @@ let mercury = {
 	radius: 3*unit,
 	color: '#a6a4a2',
 	orbit: 57*unit,
-	img: ImagePlanet('img/mercury.png')
+	img: ImagePlanet('img/mercury.png'),
+	rotateRatio: 4.1 //отношение года на Земле к году на Меркурии = 4.1
 };
 
 let venus = {
@@ -45,7 +48,8 @@ let venus = {
 	radius: 9.5*unit,
 	color: '#e0c396',
 	orbit: 108*unit,
-	img: ImagePlanet('img/venus.png')
+	img: ImagePlanet('img/venus.png'),
+	rotateRatio: 1.6
 };
 
 let earth = {
@@ -54,7 +58,8 @@ let earth = {
 	radius: 10*unit,
 	color: '#abd4d0',
 	orbit: 150*unit,
-	img: ImagePlanet('img/earth.png')
+	img: ImagePlanet('img/earth.png'),
+	rotateRatio: 1
 };
 
 let mars = {
@@ -63,7 +68,8 @@ let mars = {
 	radius: 5*unit,
 	color: '#873e2e',
 	orbit: 228*unit,
-	img: ImagePlanet('img/mars.png')
+	img: ImagePlanet('img/mars.png'),
+	rotateRatio: 0.53
 };
 
 
@@ -75,7 +81,8 @@ let jupiter = {
 	radius: 30*unit,
 	color: '#ceb193',
 	orbit: 320*unit,
-	img: ImagePlanet('img/jupiter.png')
+	img: ImagePlanet('img/jupiter.png'),
+	rotateRatio: 0.085
 };
 
 let saturn = {
@@ -84,7 +91,8 @@ let saturn = {
 	radius: 33*unit,
 	color: '#e0d8cc',
 	orbit: 390*unit,
-	img: ImagePlanet('img/saturn.png')
+	img: ImagePlanet('img/saturn.png'),
+	rotateRatio: 0.0365
 };
 
 let uran = {
@@ -93,7 +101,8 @@ let uran = {
 	radius: 13*unit,
 	color: '#3994e3',
 	orbit: 445*unit,
-	img: ImagePlanet('img/uran.png')
+	img: ImagePlanet('img/uran.png'),
+	rotateRatio: 0.0121
 };
 
 let neptun = {
@@ -102,14 +111,24 @@ let neptun = {
 	radius: 11*unit,
 	color: '#05459e',
 	orbit: 480*unit,
-	img: ImagePlanet('img/neptun.png')
+	img: ImagePlanet('img/neptun.png'),
+	rotateRatio: 0.006
 };
 
 
 
 //функция по отрисовке планеты
-let drawPlanet = function(obj){
+let drawPlanet = function(obj, angle = 0){
+	context.save(); //сохранить состояние контекста
+	context.translate(sun.x, sun.y); //сместить центр координат в центр солнца
+	//повернуть контекст на angle градусов с учетом коэффициента вращения планеты
+	context.rotate(Math.PI / 180 * angle * obj.rotateRatio);
+	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
+
+	//рисуем планету
 	context.drawImage(obj.img, obj.x - obj.radius, obj.y - obj.radius, obj.radius * 2, obj.radius * 2);
+	
+	context.restore(); //восстановить состояние контекста
 };
 
 //функция по отрисовке орбиты
@@ -141,113 +160,18 @@ let setAngle = function(grad){
 	drawOrbit(uran);
 	drawOrbit(neptun);
 
-	//********Солнце********
+	//рисуем Солнце
 	drawPlanet(sun);
 
-	//***************отрисовка планет со смещением grad***************
-		
-	//********Меркурий********
-	//отношение года на Земле к году на Меркурии = 4.1
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 4.1); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(mercury);
-		
-	context.restore(); //восстановить состояние контекста
-
-	//********Венера********
-	//отношение года на Земле к году на Венере = 1.6
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 1.6); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(venus);
-		
-	context.restore(); //восстановить состояние контекста
-
-	//********Земля********
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(earth);
-		
-	context.restore(); //восстановить состояние контекста
-
-	//********Марс********
-	//отношение года на Земле к году на Марсе = 0.5
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 0.5); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(mars);
-		
-	context.restore(); //восстановить состояние контекста
-
-	//********Юпитер********
-	//отношение года на Земле к году на Юпитере = 0.085
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 0.085); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(jupiter);
-		
-	context.restore(); //восстановить состояние контекста
-
-	//********Сатурн********
-	//отношение года на Земле к году на Сатурне = 0.0365
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 0.0365); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(saturn);
-		
-	context.restore(); //восстановить состояние контекста
-		
-	//********Уран********
-	//отношение года на Земле к году на Уране = 0.0121
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 0.0121); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(uran);
-		
-	context.restore(); //восстановить состояние контекста
-
-	//********Нептун********
-	//отношение года на Земле к году на Нептуне = 0.006
-
-	context.save(); //сохранить состояние контекста
-	context.translate(sun.x, sun.y); //сместить центр отсчета в центр солнца
-	context.rotate(Math.PI / 180 * grad * 0.006); //повернуть контекст на grad градусов относительно центра по часовой
-	context.translate(-sun.x, -sun.y); //вернуть центр отсчета в начало координат
-
-	//рисуем планету
-	drawPlanet(neptun);
-		
-	context.restore(); //восстановить состояние контекста
+	//отрисовка планет с поворотом на grad
+	drawPlanet(mercury, grad);
+	drawPlanet(venus, grad);
+	drawPlanet(earth, grad);
+	drawPlanet(mars, grad);
+	drawPlanet(jupiter, grad);
+	drawPlanet(saturn, grad);
+	drawPlanet(uran, grad);
+	drawPlanet(neptun, grad);
 };
 
 
@@ -271,7 +195,7 @@ let rotateWithSpeed = function(speed){
 		setAngle(i);
 		i++;
 
-		//триггер тысячных отсечек
+		//триггер годовых отсечек
 		if(i%360 === 0){yearCount();}
 
 		setTimeout(f, speed);
