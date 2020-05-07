@@ -14,3 +14,11 @@ window.onload = function(){
 	solarSystem.rotateWithSpeed(41); // такая частота дает примерно 24 fps
 };
 
+
+
+
+// *********CONTROLS*********
+
+document.getElementById('speed_pause').onclick = function(){
+	document.getElementById('speed_pause').classList.toggle('paused');
+};

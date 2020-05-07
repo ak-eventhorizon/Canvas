@@ -2,6 +2,7 @@
 :root {
 	--pure-black: #000000;
 	--pure-white: #ffffff; 
+	--trn-white: #ffffff33; 
 	--cosmic-glow: #0072b354;
 }
 /****************************** COLOR SCHEME - END ******************************/
@@ -30,14 +31,29 @@ body {
 #info {
 	grid-area: info;
 
-	background-image: linear-gradient(to left, var(--pure-black) 30%, var(--cosmic-glow) 100%);
-}
-
-#timer {
 	color: var(--pure-white);
-	font-size: 36px;
+	background-image: linear-gradient(to left, var(--pure-black) 30%, var(--cosmic-glow) 100%);
+
 	font-weight: bold;
 	font-family: sans-serif;
+	font-size: 1.3rem;
+	text-align: center;
+
+}
+
+#info h2 {
+	margin: 1rem;
+	font-size: 2rem;
+}
+
+#info #years_table {
+	display: grid;
+	grid-gap: 5px 0;
+	grid-template-columns: 1fr 1fr;
+}
+
+#info .planet {
+	text-align: right;
 }
 
 #main {
@@ -65,6 +81,82 @@ body {
 	background-image: linear-gradient(to right, var(--pure-black) 30%, var(--cosmic-glow) 100%);
 }
 
+#controls #buttons {
+	display: grid;
+	grid-template-areas:
+	'plus'
+	'pause'
+	'minus'
+	'stub'
+	'orbit';
+
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 10px;
+	margin: 1rem;
+}
+
+#buttons .button {
+	background-color: var(--trn-white);
+	width: 70px;
+	height: 70px;
+	border-radius: 20%;
+	margin: auto;
+}
+
+#buttons .button:not(#stub):hover {
+	cursor: pointer;
+}
+
+#buttons #stub {
+	grid-area: stub;
+
+	background-color: transparent;
+}
+
+#buttons #speed_plus {
+	grid-area: plus;
+
+	background-image: url(../icons/plus.svg);
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#buttons #speed_pause {
+	grid-area: pause;
+
+	background-image: url(../icons/pause.svg);
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#buttons #speed_pause[class*="paused"] {
+	background-image: url(../icons/play.svg);
+}
+
+#buttons #speed_minus {
+	grid-area: minus;
+
+	background-image: url(../icons/minus.svg);
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#buttons #disable_orbits {
+	grid-area: orbit;
+	background-image: url(../icons/orbit.svg);
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+
+
+
+
 @media screen and (orientation:portrait) {
 	#app {
 		grid-template-areas: 
@@ -73,6 +165,34 @@ body {
 		'info';
 
 		grid-template-columns: 100vmin;
-		grid-template-rows: 100vmin 1fr 1fr;
+		grid-template-rows: 100vmin auto 1fr;
+	}
+
+	#info {
+		background-image: none;
+		font-size: 2.5rem;
+	}
+
+	#info h2 {
+		font-size: 4rem;
+	}
+
+	#info #years_table {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+
+	#controls {
+		background-image: none;
+	}
+
+	#controls #buttons {
+		grid-template-areas: 'orbit stub minus pause plus';
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: auto;
+	}
+
+	#buttons .button {
+		width: 150px;
+		height: 150px;
 	}
 }

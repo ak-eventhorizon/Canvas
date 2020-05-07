@@ -9,9 +9,6 @@ context.canvas.height = canvas.clientHeight;
 //изначально - использовался холст 1000x1000px
 let unit = canvas.clientWidth / 1000;
 
-//текущий год (один оборот Земли вокруг солнца)
-let year = 0;
-
 //конструктор для создания <img> с атрибутом src
 let ImagePlanet = function(src){
 	let img = new Image();
@@ -176,10 +173,25 @@ let setAngle = function(grad){
 
 
 
-//увеличение летоисчисления
+//подсчет прошедших лет на планетах
+let yearCount = function(num){
+	let yearMercury = document.getElementById('year_mercury');
+	let yearVenus = document.getElementById('year_venus');
+	let yearEarth = document.getElementById('year_earth');
+	let yearMars = document.getElementById('year_mars');
+	let yearJupiter = document.getElementById('year_jupiter');
+	let yearSaturn = document.getElementById('year_saturn');
+	let yearUran = document.getElementById('year_uran');
+	let yearNeptun = document.getElementById('year_neptun');
 
-let yearCount = function(){
-	document.getElementById('timer').innerText = `Year: ${++year}`;
+	yearMercury.innerText = Math.floor(num*mercury.rotateRatio / 360);
+	yearVenus.innerText = Math.floor(num*venus.rotateRatio / 360);
+	yearEarth.innerText = (num*earth.rotateRatio / 360).toFixed(1);
+	yearMars.innerText = (num*mars.rotateRatio / 360).toFixed(1);
+	yearJupiter.innerText = (num*jupiter.rotateRatio / 360).toFixed(2);
+	yearSaturn.innerText = (num*saturn.rotateRatio / 360).toFixed(2);
+	yearUran.innerText = (num*uran.rotateRatio / 360).toFixed(3);
+	yearNeptun.innerText = (num*neptun.rotateRatio / 360).toFixed(3);
 };
 
 
@@ -194,9 +206,7 @@ let rotateWithSpeed = function(speed){
 	function f(){
 		setAngle(i);
 		i++;
-
-		//триггер годовых отсечек
-		if(i%360 === 0){yearCount();}
+		yearCount(i);
 
 		setTimeout(f, speed);
 	}
