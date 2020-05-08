@@ -10,15 +10,32 @@ window.onload = function(){
 	starsBackground.generateOrdinaryStars(600);
 	starsBackground.generateGradientStars(5);
 
-	solarSystem.setAngle(0);
-	solarSystem.rotateWithSpeed(41); // такая частота дает примерно 24 fps
+	solarSystem.rotate();
 };
-
 
 
 
 // *********CONTROLS*********
 
+document.getElementById('speed_plus').onclick = function(){
+	solarSystem.rotateSpeedPlus();
+};
+
 document.getElementById('speed_pause').onclick = function(){
 	document.getElementById('speed_pause').classList.toggle('paused');
+	solarSystem.rotateSpeedTogglePause();
+};
+
+document.getElementById('speed_minus').onclick = function(){
+	solarSystem.rotateSpeedMinus();
+};
+
+document.getElementById('disable_orbits').onclick = function(){
+	document.getElementById('disable_orbits').classList.toggle('disabled');
+	solarSystem.toggleOrbitVisibility();
+};
+
+document.getElementById('info_toggle').onclick = function(){
+	document.getElementById('info_toggle').classList.toggle('disabled');
+	document.getElementById('info').classList.toggle('transparent');
 };

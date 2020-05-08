@@ -9,6 +9,22 @@ context.canvas.height = canvas.clientHeight;
 //изначально - использовался холст 1000x1000px
 let unit = canvas.clientWidth / 1000;
 
+//флаг, указывающий рисовать орбиты или нет
+let visibleOrbits = true;
+
+//индекс текущей скорости в массиве rotateSpeedsArr
+let rotateSpeedIndex = 2;
+
+// возможные значения скоростей вращения (чем меньше тем быстрее)
+// средняя скорость - 41 - дает примерно 24 fps
+let rotateSpeedsArr = [1,21,41,81,161];
+
+//текущая скорость вращения
+let rotateSpeed = rotateSpeedsArr[rotateSpeedIndex];
+
+//флаг, указывающий остановлено ли вращение
+let rotatePaused = false;
+
 //конструктор для создания <img> с атрибутом src
 let ImagePlanet = function(src){
 	let img = new Image();
@@ -19,6 +35,7 @@ let ImagePlanet = function(src){
 
 
 //соотношение орбит и радиусов планет в этой группе аутентичное
+
 let sun = {
 	x: 500*unit,
 	y: 500*unit,
@@ -141,21 +158,23 @@ let drawOrbit = function(obj, lineWidth = 0.3, color = 'white'){
 	context.restore();
 };
 
-//вращение на grad градусов
-let setAngle = function(grad){
+//вращение на grad градусов и перерисовка
+let setAngleAndRedraw = function(grad){
 
 	//очистка canvas
 	context.clearRect(0, 0, canvas.width, canvas.height); 
 
-	//рисуем орбиты планет
-	drawOrbit(mercury);
-	drawOrbit(venus);
-	drawOrbit(earth);
-	drawOrbit(mars);
-	drawOrbit(jupiter);
-	drawOrbit(saturn);
-	drawOrbit(uran);
-	drawOrbit(neptun);
+	//рисуем орбиты планет если флаг - true
+	if(visibleOrbits) {
+		drawOrbit(mercury);
+		drawOrbit(venus);
+		drawOrbit(earth);
+		drawOrbit(mars);
+		drawOrbit(jupiter);
+		drawOrbit(saturn);
+		drawOrbit(uran);
+		drawOrbit(neptun);
+	}
 
 	//рисуем Солнце
 	drawPlanet(sun);
@@ -196,29 +215,60 @@ let yearCount = function(num){
 
 
 		
+//переключение видимости орбит - true/false
+let toggleOrbitVisibility = function(){
+	visibleOrbits = !visibleOrbits;
+};
+
+//увеличение скорости вращения
+let rotateSpeedPlus = function(){
+	if(rotateSpeedIndex > 0){
+		rotateSpeedIndex--;
+		rotateSpeed = rotateSpeedsArr[rotateSpeedIndex];
+	}
+};
+
+//уменьшение скорости вращения
+let rotateSpeedMinus = function(){
+	if(rotateSpeedIndex < rotateSpeedsArr.length-1){
+		rotateSpeedIndex++;
+		rotateSpeed = rotateSpeedsArr[rotateSpeedIndex];
+	}
+};
+
+// остановка/возобновление вращения
+let rotateSpeedTogglePause = function(){
+	rotatePaused = !rotatePaused;
+};
+
+
+
 //рекурсивный цикл увеличения градусов поворота
-// speed - интервал отрисовки (чем меньше тем быстрее)
 // ПОТЕНЦИАЛЬНАЯ ПРОБЛЕМА - i увеличивается бесконечно
 
-let rotateWithSpeed = function(speed){
+let rotate = function(){
 	let i = 0;
 
 	function f(){
-		setAngle(i);
-		i++;
-		yearCount(i);
 
-		setTimeout(f, speed);
+		//проверка стоит ли пауза
+		if(!rotatePaused){
+			setAngleAndRedraw(i);
+			i++;
+			yearCount(i);
+		}
+
+		setTimeout(f, rotateSpeed);
 	}
 	f();
 };
 
 
-
-
-// window.onload = function(){
-// 	setAngle(0);
-// 	rotateWithSpeed(41); // такая частота дает примерно 24 fps
-// };
-export {setAngle, rotateWithSpeed};
+export {
+	rotate,
+	rotateSpeedPlus,
+	rotateSpeedMinus,
+	rotateSpeedTogglePause,
+	toggleOrbitVisibility
+};
 

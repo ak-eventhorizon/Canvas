@@ -18,10 +18,6 @@ body {
 	background-color: var(--pure-black);
 }
 
-#images {
-	display: none;
-}
-
 #app {
 	display: grid;
 	grid-template-areas: 'info main controls';
@@ -38,7 +34,10 @@ body {
 	font-family: sans-serif;
 	font-size: 1.3rem;
 	text-align: center;
+}
 
+#info[class*="transparent"]{
+	color: transparent;
 }
 
 #info h2 {
@@ -50,6 +49,10 @@ body {
 	display: grid;
 	grid-gap: 5px 0;
 	grid-template-columns: 1fr 1fr;
+}
+
+#years_table div {
+	overflow: hidden;
 }
 
 #info .planet {
@@ -88,9 +91,10 @@ body {
 	'pause'
 	'minus'
 	'stub'
-	'orbit';
+	'orbit'
+	'info';
 
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 	grid-gap: 10px;
 	margin: 1rem;
 }
@@ -146,10 +150,28 @@ body {
 
 #buttons #disable_orbits {
 	grid-area: orbit;
-	background-image: url(../icons/orbit.svg);
-	background-size: 90%;
+
+	background-image: url(../icons/orbit_dsbl.svg);
+	background-size: 80%;
 	background-repeat: no-repeat;
 	background-position: center center;
+}
+
+#buttons #disable_orbits[class*="disabled"] {
+	background-image: url(../icons/orbit_enbl.svg);
+}
+
+#buttons #info_toggle {
+	grid-area: info;
+
+	background-image: url(../icons/info_dsbl.svg);
+	background-size: 80%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#buttons #info_toggle[class*="disabled"] {
+	background-image: url(../icons/info_enbl.svg);
 }
 
 
@@ -186,13 +208,13 @@ body {
 	}
 
 	#controls #buttons {
-		grid-template-areas: 'orbit stub minus pause plus';
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-areas: 'info orbit stub minus pause plus';
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		grid-template-rows: auto;
 	}
 
 	#buttons .button {
-		width: 150px;
-		height: 150px;
+		min-width: 140px;
+		min-height: 140px;
 	}
 }
