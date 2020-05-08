@@ -1,9 +1,18 @@
+@font-face {
+    font-family: 'Trashford';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/trashfort.ttf') format('truetype');
+}
+
+
 /****************************** COLOR SCHEME - BEGIN ******************************/
 :root {
 	--pure-black: #000000;
 	--pure-white: #ffffff; 
-	--trn-white: #ffffff33; 
-	--cosmic-glow: #0072b354;
+	--trn-white: #ffffff55;
+	--cosmic-grey: #939393;
+	/* --cosmic-glow: #0072b354; */
 }
 /****************************** COLOR SCHEME - END ******************************/
 
@@ -27,12 +36,12 @@ body {
 #info {
 	grid-area: info;
 
-	color: var(--pure-white);
-	background-image: linear-gradient(to left, var(--pure-black) 30%, var(--cosmic-glow) 100%);
+	color: var(--cosmic-grey);
+	/* background-image: linear-gradient(to left, var(--pure-black) 30%, var(--cosmic-glow) 100%); */
 
 	font-weight: bold;
-	font-family: sans-serif;
-	font-size: 1.3rem;
+	font-family: Trashford, sans-serif;
+	font-size: 1.8rem;
 	text-align: center;
 }
 
@@ -42,7 +51,7 @@ body {
 
 #info h2 {
 	margin: 1rem;
-	font-size: 2rem;
+	font-size: 4rem;
 }
 
 #info #years_table {
@@ -81,7 +90,7 @@ body {
 #controls {
 	grid-area: controls;
 
-	background-image: linear-gradient(to right, var(--pure-black) 30%, var(--cosmic-glow) 100%);
+	/* background-image: linear-gradient(to right, var(--pure-black) 30%, var(--cosmic-glow) 100%); */
 }
 
 #controls #buttons {
@@ -192,15 +201,15 @@ body {
 
 	#info {
 		background-image: none;
-		font-size: 2.5rem;
+		font-size: 3rem;
 	}
 
 	#info h2 {
-		font-size: 4rem;
+		font-size: 8rem;
 	}
 
 	#info #years_table {
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 3fr 2fr 3fr 2fr;
 	}
 
 	#controls {
