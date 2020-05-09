@@ -95,35 +95,26 @@ body {
 
 #controls #buttons {
 	display: grid;
-	grid-template-areas:
-	'plus'
-	'pause'
-	'minus'
-	'stub'
-	'orbit'
-	'info';
-
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-	grid-gap: 10px;
-	margin: 1rem;
+    grid-template-areas:
+        'minus pause plus'
+        '. info orbit';
+	grid-template-columns: repeat(3,fit-content(100%));
+	grid-gap: 5px 5px;
+	
+    margin: 2rem;
+	justify-content: center;
 }
 
 #buttons .button {
 	background-color: var(--trn-white);
-	width: 70px;
-	height: 70px;
+	width: 40px;
+	height: 40px;
 	border-radius: 20%;
 	margin: auto;
 }
 
-#buttons .button:not(#stub):hover {
+#buttons .button:hover {
 	cursor: pointer;
-}
-
-#buttons #stub {
-	grid-area: stub;
-
-	background-color: transparent;
 }
 
 #buttons #speed_plus {
@@ -217,7 +208,7 @@ body {
 	}
 
 	#controls #buttons {
-		grid-template-areas: 'info orbit stub minus pause plus';
+		grid-template-areas: 'info orbit . minus pause plus';
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		grid-template-rows: auto;
 	}
