@@ -17,7 +17,7 @@ let rotateSpeedIndex = 2;
 
 // возможные значения скоростей вращения (чем меньше тем быстрее)
 // средняя скорость - 41 - дает примерно 24 fps
-let rotateSpeedsArr = [1,21,41,81,161];
+let rotateSpeedsArr = [161,81,41,21,1];
 
 //текущая скорость вращения
 let rotateSpeed = rotateSpeedsArr[rotateSpeedIndex];
@@ -222,16 +222,16 @@ let toggleOrbitVisibility = function(){
 
 //увеличение скорости вращения
 let rotateSpeedPlus = function(){
-	if(rotateSpeedIndex > 0){
-		rotateSpeedIndex--;
+	if(rotateSpeedIndex < rotateSpeedsArr.length-1){
+		rotateSpeedIndex++;
 		rotateSpeed = rotateSpeedsArr[rotateSpeedIndex];
 	}
 };
 
 //уменьшение скорости вращения
 let rotateSpeedMinus = function(){
-	if(rotateSpeedIndex < rotateSpeedsArr.length-1){
-		rotateSpeedIndex++;
+	if(rotateSpeedIndex > 0){
+		rotateSpeedIndex--;
 		rotateSpeed = rotateSpeedsArr[rotateSpeedIndex];
 	}
 };

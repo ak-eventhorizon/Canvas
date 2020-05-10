@@ -12,7 +12,6 @@
 	--pure-white: #ffffff; 
 	--trn-white: #ffffff55;
 	--cosmic-grey: #939393;
-	/* --cosmic-glow: #0072b354; */
 }
 /****************************** COLOR SCHEME - END ******************************/
 
@@ -37,8 +36,6 @@ body {
 	grid-area: info;
 
 	color: var(--cosmic-grey);
-	/* background-image: linear-gradient(to left, var(--pure-black) 30%, var(--cosmic-glow) 100%); */
-
 	font-weight: bold;
 	font-family: Trashford, sans-serif;
 	font-size: 1.8rem;
@@ -89,8 +86,6 @@ body {
 
 #controls {
 	grid-area: controls;
-
-	/* background-image: linear-gradient(to right, var(--pure-black) 30%, var(--cosmic-glow) 100%); */
 }
 
 #controls #buttons {

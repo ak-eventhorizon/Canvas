@@ -6,6 +6,23 @@ const stars = {
     colors: ['#ffffff','#c8c8c8','#fff4fe','#faf0db','#fbf9ff'],
 };
 
+let canvas;
+let ctx;
+
+
+
+//main function for export
+function createStarsBackgruound(elementID, ordinaryStars, gredientStars) {
+    canvas = document.getElementById(elementID);
+    ctx = canvas.getContext('2d');
+    ctx.canvas.width  = canvas.clientWidth; // set canvas width as block width
+    ctx.canvas.height = canvas.clientHeight; // set canvas height as block height
+
+    refreshCanvas();
+    generateOrdinaryStars(ordinaryStars);
+    generateGradientStars(gredientStars);
+}
+
 
 
 function randomFromZeroTo(number){
@@ -16,13 +33,6 @@ function randomElementFrom(array) {
     let randomItem = array[Math.floor(Math.random() * array.length)];
     return randomItem;
 }
-
-
-
-let canvas = document.getElementById('stars_bg');
-let ctx = canvas.getContext('2d');
-ctx.canvas.width  = canvas.clientWidth; // set canvas width as block width
-ctx.canvas.height = canvas.clientHeight; // set canvas height as block height
 
 // create ordinary stars
 function generateOrdinaryStars(number) {
@@ -73,4 +83,5 @@ function refreshCanvas() {
 }
 
 
-export {refreshCanvas, generateOrdinaryStars, generateGradientStars};
+
+export {createStarsBackgruound};
