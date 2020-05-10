@@ -183,16 +183,22 @@ body {
 	#app {
 		grid-template-areas: 
 		'main'
-		'controls'
-		'info';
+		'info'
+		'controls';
 
 		grid-template-columns: 100vmin;
-		grid-template-rows: 100vmin auto 1fr;
+		grid-template-rows: 100vmin 1fr auto;
+
+		min-height: 100vh;
 	}
 
 	#info {
 		background-image: none;
-		font-size: 3rem;
+		font-size: 3.5rem;
+
+		display: flex;
+    	flex-direction: column;
+    	justify-content: center;
 	}
 
 	#info h2 {
