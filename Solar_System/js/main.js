@@ -6,9 +6,7 @@ import * as solarSystem from './modules/solar_system.js';
 
 
 window.onload = function(){
-	
-	starsBackground.createStarsBackgruound('stars_bg', 600, 5);
-
+	starsBackground.createStarsBackgruound('stars_bg', 1400, 14);
 	solarSystem.rotate();
 };
 
