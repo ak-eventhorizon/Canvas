@@ -31,7 +31,8 @@ body {
     left: 0;
     z-index: 2;
 
-    display: grid;
+    display: none;
+
     grid-template-areas:
     '. up .'
     'left pause right'
@@ -65,7 +66,7 @@ body {
 	background-image: url(../icons/pause.svg);
 }
 
-#btn_pause[class*="active"]{
+#btn_pause[class*="paused"]{
 	background-image: url(../icons/play.svg);
 }
 
@@ -79,4 +80,14 @@ body {
     grid-area: down;
 
 	background-image: url(../icons/arrow-down.svg);
+}
+
+
+
+/*media query breakpoint - sensor screen*/
+@media (pointer:coarse) {
+
+    #controls{
+        display: grid;
+    }
 }
