@@ -12,7 +12,7 @@ let ctx;
 
 
 //main function for export
-function createStarsBackground(elementID, ordinaryStars, gredientStars) {
+function createStarsBackground(elementID, ordinaryStars, gradientStars) {
     canvas = document.getElementById(elementID);
     ctx = canvas.getContext('2d');
     ctx.canvas.width  = canvas.clientWidth; // set canvas width as block width
@@ -20,7 +20,7 @@ function createStarsBackground(elementID, ordinaryStars, gredientStars) {
 
     refreshCanvas();
     generateOrdinaryStars(ordinaryStars);
-    generateGradientStars(gredientStars);
+    generateGradientStars(gradientStars);
 }
 
 
